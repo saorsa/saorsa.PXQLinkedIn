@@ -59,19 +59,6 @@ typedef void (^PXQLinkedInErrorCallback)(NSError * error);
 
 @interface PXQLinkedIn (Configuration)
 
-/**
-    Configures the class for the authorization view controller.
-    MUST be a derived class of the @seealso PXQLinkedInAuthorizationViewController class
- */
-+ (void)setAuthorizationViewControllerClass:(Class)viewControllerClass;
-
-/**
-    Creates an instance of the class specified in @seealso setAuthorizationViewControllerClass: method.
- 
-    If not specified, returns a default @seealso PXQLinkedInAuthorizationViewController class instance.
- */
-+ (PXQLinkedInAuthorizationViewController *)createAuthorizationControllerForApplication:(PXQLinkedInApplication *)application;
-
 @end
 
 @interface PXQLinkedIn (UIPresentation)

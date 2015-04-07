@@ -28,8 +28,6 @@
 @synthesize httpClient = _httpClient;
 @synthesize presenterViewController = _presenterViewController;
 
-static Class _authorizationViewControllerClass;
-
 - (id)init {
     
     self = [super init];
@@ -50,18 +48,6 @@ static Class _authorizationViewControllerClass;
     result.presenterViewController = presenterViewController ?: [UIApplication sharedApplication].keyWindow.rootViewController;
     
     return result;
-}
-
-+ (void)setAuthorizationViewControllerClass:(Class)viewControllerClass {
- 
-    if ( ! [viewControllerClass isSubclassOfClass:[PXQLinkedInAuthorizationViewController class]]) {
-    
-        [NSException raise:@"ArgumentException" format:@"Class '%@' is not a valid subclass of the PXQLinkedInAuthorizationViewController class.", NSStringFromClass(viewControllerClass)];
-    }
-    else {
-        
-        _authorizationViewControllerClass = viewControllerClass;
-    }
 }
 
 - (void)setApplication:(PXQLinkedInApplication *)application {
@@ -96,14 +82,7 @@ static Class _authorizationViewControllerClass;
 
 + (PXQLinkedInAuthorizationViewController *)createAuthorizationControllerForApplication:(PXQLinkedInApplication *)application {
     
-    if ( _authorizationViewControllerClass ) {
-        
-        return [[_authorizationViewControllerClass alloc] initWithApplication:application];
-    }
-    else {
-        
-        return [[PXQLinkedInAuthorizationViewController alloc] initWithApplication:application];
-    }
+    return [[PXQLinkedInAuthorizationViewController alloc] initWithApplication:application];
 }
 
 - (void)displayLinkedInAuthorizationScreen:(PXQLinkedInAuthorizationViewController *)authorizationViewController completion:(void (^)(void))completion {
