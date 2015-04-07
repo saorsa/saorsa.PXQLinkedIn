@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'PXQLinkedIn', :exclusive => true do
+  pod "PXQLinkedIn", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "PXQLinkedIn", :path => "../"
+
+  
+end
