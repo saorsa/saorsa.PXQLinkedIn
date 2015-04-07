@@ -35,7 +35,7 @@ extern NSString * const kPXQ_LinkedIn_UserDefaults_CreatedKey;
 /**
     Gets an indication, if the @seealso accessToken is valid and not expired.
  */
-@property (nonatomic, readonly) BOOL * hasValidAccessToken;
+@property (nonatomic, readonly) BOOL hasValidAccessToken;
 
 /**
     Returns an instance of the class for the specified application.
