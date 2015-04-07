@@ -91,6 +91,8 @@ NSString * const kPXQLinkedInDeniedByUser   = @"the+user+denied+your+request";
 
 - (void)viewDidAppear:(BOOL)animated {
     
+    [super viewDidAppear:animated];
+    
     NSString *linkedInAuthorizationUrlString = [NSString stringWithFormat:@"https://www.linkedin.com/uas/oauth2/authorization?response_type=code&client_id=%@&scope=%@&state=%@&redirect_uri=%@", self.linkedInApplication.clientId, self.linkedInApplication.grantedAccessString, self.linkedInApplication.state, [self.linkedInApplication.redirectURLString encodedStringForLinkedInAuthorization]];
     
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:linkedInAuthorizationUrlString]]];
