@@ -123,4 +123,25 @@ NSString * const kPXQ_LinkedIn_UserDefaults_CreatedKey
     }];
 }
 
+
+- (void)getProfileInformation:(NSString *)accessToken
+                      success:(void (^)(NSDictionary * authInfo))success
+                      failure:(void (^)(NSError * error))failure {
+    
+    [self GET:[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~?oauth2_access_token=%@&format=json", accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if ( success  != NULL ) {
+            
+            success ( responseObject );
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       
+        if ( failure != NULL ) {
+            
+            failure (error);
+        }
+    }];
+}
+
 @end

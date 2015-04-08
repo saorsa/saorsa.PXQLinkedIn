@@ -48,4 +48,11 @@ extern NSString * const kPXQ_LinkedIn_UserDefaults_CreatedKey;
  */
 - (void)getAccessToken:(NSString *)authorizationCode success:(void (^)(NSDictionary * authInfo))success failure:(void (^)(NSError * error))failure;
 
+/**
+    Performs asynchronious request for the user profile associated with the token.
+ */
+- (void)getProfileInformation:(NSString *)accessToken
+                      success:(void (^)(NSDictionary * authInfo))success
+                      failure:(void (^)(NSError * error))failure;
+
 @end
