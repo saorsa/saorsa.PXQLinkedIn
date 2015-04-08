@@ -25,6 +25,11 @@ typedef void (^PXQLinkedInErrorCallback)(NSError * error);
 @interface PXQLinkedIn : NSObject<PXQLinkedInAuthorizationViewControllerDelegate>
 
 /**
+    Gets the undelying HTTP client reference.
+ */
+@property (nonatomic, strong, readonly) PXQLinkedInHttpOperationManager * httpClient;
+
+/**
     Gets the reference to the configured LinkedIn application.
  */
 @property (nonatomic, strong, readonly) PXQLinkedInApplication * application;
