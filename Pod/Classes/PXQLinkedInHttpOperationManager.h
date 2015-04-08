@@ -55,4 +55,13 @@ extern NSString * const kPXQ_LinkedIn_UserDefaults_CreatedKey;
                       success:(void (^)(NSDictionary * authInfo))success
                       failure:(void (^)(NSError * error))failure;
 
+/**
+    Performs asynchronious request for the user profile associated with the token.
+    Fetches the specified property keys only.
+ */
+- (void)getProfileInformation:(NSString *)accessToken
+     profilePropertiesToFetch:(NSArray *)profilePropertyKeys
+                      success:(void (^)(NSDictionary * authInfo))success
+                      failure:(void (^)(NSError * error))failure;
+
 @end

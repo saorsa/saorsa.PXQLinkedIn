@@ -123,25 +123,66 @@ NSString * const kPXQ_LinkedIn_UserDefaults_CreatedKey
     }];
 }
 
-
 - (void)getProfileInformation:(NSString *)accessToken
                       success:(void (^)(NSDictionary * authInfo))success
                       failure:(void (^)(NSError * error))failure {
     
-    [self GET:[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~?oauth2_access_token=%@&format=json", accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self getProfileInformation:accessToken profilePropertiesToFetch:nil success:success failure:failure];
+}
+
+- (void)getProfileInformation:(NSString *)accessToken
+     profilePropertiesToFetch:(NSArray *)profilePropertyKeys
+                      success:(void (^)(NSDictionary * authInfo))success
+                      failure:(void (^)(NSError * error))failure {
+    
+    if ( profilePropertyKeys.count > 0) {
         
-        if ( success  != NULL ) {
-            
-            success ( responseObject );
+        NSMutableString * stringifiedPropertyKeys = [NSMutableString new];
+        
+        for (NSInteger idx = 0; idx < profilePropertyKeys.count; idx++) {
+         
+            if ( idx == (profilePropertyKeys.count-1) ) {
+                
+                [stringifiedPropertyKeys appendString:[profilePropertyKeys objectAtIndex:idx]];
+            }
+            else {
+                
+                [stringifiedPropertyKeys appendFormat:@"%@,", [profilePropertyKeys objectAtIndex:idx]];
+            }
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-       
-        if ( failure != NULL ) {
+        [self GET:[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~:(%@)?oauth2_access_token=%@&format=json", stringifiedPropertyKeys, accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
-            failure (error);
-        }
-    }];
+            if ( success  != NULL ) {
+                
+                success ( responseObject );
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            if ( failure != NULL ) {
+                
+                failure (error);
+            }
+        }];
+    }
+    else {
+        
+        [self GET:[NSString stringWithFormat:@"https://api.linkedin.com/v1/people/~?oauth2_access_token=%@&format=json", accessToken] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            if ( success  != NULL ) {
+                
+                success ( responseObject );
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            if ( failure != NULL ) {
+                
+                failure (error);
+            }
+        }];
+    }
 }
 
 @end
