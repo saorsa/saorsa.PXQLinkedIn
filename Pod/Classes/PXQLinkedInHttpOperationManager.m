@@ -56,7 +56,7 @@ NSString * const kPXQ_LinkedIn_UserDefaults_CreatedKey
         [allKeys containsObject:kPXQ_LinkedIn_UserDefaults_TokenKey];
 }
 
-- (BOOL)hasValidToken {
+- (BOOL)hasValidAccessToken {
     
     BOOL hasSession = [self hasLinkedInSession];
     
