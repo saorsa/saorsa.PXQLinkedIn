@@ -16,10 +16,6 @@
 
 @property (nonatomic, strong) PXQLinkedInAuthorizationViewController * activeAuthorizationController;
 
-@property (nonatomic, copy) PXQLinkedInErrorCallback authorizationErrorCallback;
-
-@property (nonatomic, copy) PXQLinkedInAuthenticationSuccessCallback authenticationSuccessCallback;
-
 @end
 
 @implementation PXQLinkedIn

@@ -56,6 +56,16 @@ typedef void (^PXQLinkedInErrorCallback)(NSError * error);
 @property (nonatomic) UIModalTransitionStyle authorizationScreenTransitionStyle;
 
 /**
+    The callback block invoked upon authorization error.
+ */
+@property (nonatomic, copy) PXQLinkedInErrorCallback authorizationErrorCallback;
+
+/**
+    The callback block invoked upon authentication & authorization success.
+ */
+@property (nonatomic, copy) PXQLinkedInAuthenticationSuccessCallback authenticationSuccessCallback;
+
+/**
     Gets a configured instance of the class.
  */
 + (instancetype)configureWithApplication:(PXQLinkedInApplication *)application presenterViewController:(UIViewController *)presenterViewController;

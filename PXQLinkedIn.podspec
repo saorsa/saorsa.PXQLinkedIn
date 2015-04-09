@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PXQLinkedIn"
-  s.version          = "0.2.7"
+  s.version          = "0.2.8"
   s.summary          = "PXQLinkedIn is a tiny iOS library for LinkedIn integration based on the LIALinkedIn library."
   s.description      = <<-DESC
                        The PXQLinkedIn library provides for a more extensive customation of the LinkedIn authorization views.
