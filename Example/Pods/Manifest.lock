@@ -20,7 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - PXQLinkedIn (0.2.8):
+  - PXQLinkedIn (0.3):
     - AFNetworking (~> 2.3)
 
 DEPENDENCIES:
@@ -32,6 +32,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
-  PXQLinkedIn: 4ef9ff79502f7176a337f096a51d12b391050342
+  PXQLinkedIn: 0e8c1f81a2c2796d7d15314f0fa112b2ab9f7cd5
 
 COCOAPODS: 0.36.0

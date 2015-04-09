@@ -36,4 +36,14 @@
 - (void)pxquisiteLinkedInAuthorizationViewController:(PXQLinkedInAuthorizationViewController *)linkedInAuthorizationViewController
                       succeededWithAuthorizationCode:(NSString *)code;
 
+/**
+    Fired when the authorization request start executing.
+ */
+- (void)pxquisiteLinkedInAuthorizationViewControllerWillStartLoading:(PXQLinkedInAuthorizationViewController *)linkedInAuthorizationViewController;
+
+/**
+    Fired when the authorization request finishes execution.
+ */
+- (void)pxquisiteLinkedInAuthorizationViewControllerDidStopLoading:(PXQLinkedInAuthorizationViewController *)linkedInAuthorizationViewController;
+
 @end

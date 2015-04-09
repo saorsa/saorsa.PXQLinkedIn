@@ -132,6 +132,22 @@ NSString * const kPXQLinkedInDeniedByUser   = @"the+user+denied+your+request";
     }
 }
 
+- (void)notifyStartLoading {
+    
+    if ( [self.delegate respondsToSelector:@selector(pxquisiteLinkedInAuthorizationViewControllerWillStartLoading:)]) {
+        
+        [self.delegate pxquisiteLinkedInAuthorizationViewControllerWillStartLoading:self];
+    }
+}
+
+- (void)notifyEndLoading {
+    
+    if ( [self.delegate respondsToSelector:@selector(pxquisiteLinkedInAuthorizationViewControllerDidStopLoading:)]) {
+        
+        [self.delegate pxquisiteLinkedInAuthorizationViewControllerDidStopLoading:self];
+    }
+}
+
 #pragma mark -
 #pragma mark Cancellation
 
@@ -144,6 +160,8 @@ NSString * const kPXQLinkedInDeniedByUser   = @"the+user+denied+your+request";
 #pragma mark WebView & OAuth Handlers
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    [self notifyStartLoading];
     
     NSString *url = [[request URL] absoluteString];
     
@@ -198,6 +216,7 @@ NSString * const kPXQLinkedInDeniedByUser   = @"the+user+denied+your+request";
             }
         }
     }
+    
     return ! self.handleRedirectURL;
 }
 
@@ -222,8 +241,10 @@ NSString * const kPXQLinkedInDeniedByUser   = @"the+user+denied+your+request";
     
     if ( ! self.handleRedirectURL ) {
     
-        [self.delegate pxquisiteLinkedInAuthorizationViewController:self failedWithError:error];
+        [self notifyDidFail:error];
     }
+    
+    [self notifyEndLoading];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -238,6 +259,8 @@ NSString * const kPXQLinkedInDeniedByUser   = @"the+user+denied+your+request";
         
         [webView stringByEvaluatingJavaScriptFromString: js];
     }
+    
+    [self notifyEndLoading];
 }
 
 @end
